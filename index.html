@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNjAwIDYwMCI+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMzAwIiBmaWxsPSIjMUI0MzM5Ii8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1MCwyMDUpIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPgogIDxwYXRoIGQ9Ik0wIDc1IEgyMjUgQzI4MSA3NSAyODEgOSAyMjUgOSBDMTg4IDkgMTc4IDQ3IDE3OCA0NyIgc3Ryb2tlPSIjOUZDM0I1IiBzdHJva2Utd2lkdGg9IjI4Ii8+CiAgPHBhdGggZD0iTTAgMTUwIEgyODEgQzM0NyAxNTAgMzQ3IDIwNiAyOTAgMjA2IEMyNDMgMjA2IDIzNCAxNzggMjM0IDE3OCIgc3Ryb2tlPSIjN0ZENzlCIiBzdHJva2Utd2lkdGg9IjI4Ii8+CiAgPHBhdGggZD0iTTAgMjI1IEgxODggQzIzNCAyMjUgMjM0IDI3MiAxODggMjcyIiBzdHJva2U9IiM5RkMzQjUiIHN0cm9rZS13aWR0aD0iMjgiLz4KPC9nPgo8L3N2Zz4=">
+<link rel="alternate icon" type="image/png" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNjAwIDYwMCI+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMwMCIgcj0iMzAwIiBmaWxsPSIjMUI0MzM5Ii8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE1MCwyMDUpIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPgogIDxwYXRoIGQ9Ik0wIDc1IEgyMjUgQzI4MSA3NSAyODEgOSAyMjUgOSBDMTg4IDkgMTc4IDQ3IDE3OCA0NyIgc3Ryb2tlPSIjOUZDM0I1IiBzdHJva2Utd2lkdGg9IjI4Ii8+CiAgPHBhdGggZD0iTTAgMTUwIEgyODEgQzM0NyAxNTAgMzQ3IDIwNiAyOTAgMjA2IEMyNDMgMjA2IDIzNCAxNzggMjM0IDE3OCIgc3Ryb2tlPSIjN0ZENzlCIiBzdHJva2Utd2lkdGg9IjI4Ii8+CiAgPHBhdGggZD0iTTAgMjI1IEgxODggQzIzNCAyMjUgMjM0IDI3MiAxODggMjcyIiBzdHJva2U9IiM5RkMzQjUiIHN0cm9rZS13aWR0aD0iMjgiLz4KPC9nPgo8L3N2Zz4=">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SensiAire — Monitoreo de calidad del aire</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -239,7 +241,7 @@
   .meta-line .k{font-family:'JetBrains Mono',monospace;font-size:12px;color:#7FA89A;min-width:60px;}
 
   footer{padding:34px 0;border-top:1px solid rgba(255,255,255,0.12);}
-  footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:#7FA89A;font-family:'JetBrains Mono',monospace;}
+  footer .wrap{display:flex;justify-content:space-between;font-size:13px;color:#7FA89A;font-family:'JetBrains Mono',monospace;padding-right:90px;flex-wrap:wrap;gap:10px;}
 
   @media(max-width:900px){
     .hero .wrap, .cgrid, .nos-wrap, .form-wrap{grid-template-columns:1fr;}
@@ -248,6 +250,29 @@
     .hero h1{font-size:38px;}
     .quote-block{position:static;}
   }
+
+  /* WHATSAPP FLOTANTE */
+  .wa-float{
+    position:fixed; bottom:28px; right:28px; z-index:999;
+    width:58px; height:58px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 16px rgba(0,0,0,0.22);
+    transition:transform 0.18s ease, box-shadow 0.18s ease;
+    text-decoration:none;
+  }
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 6px 22px rgba(0,0,0,0.30);}
+  .wa-float svg{width:32px;height:32px;fill:#fff;}
+  .wa-tooltip{
+    position:fixed; bottom:36px; right:96px; z-index:998;
+    background:var(--green-deep); color:#EFEAE0;
+    padding:8px 14px; border-radius:4px; font-size:13px;
+    font-family:'Space Grotesk',sans-serif; white-space:nowrap;
+    opacity:0; pointer-events:none;
+    transition:opacity 0.18s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,0.15);
+  }
+  .wa-float:hover + .wa-tooltip, .wa-tooltip:hover{opacity:1;}
+
 </style>
 </head>
 <body>
@@ -402,7 +427,7 @@
       </div>
       <div class="quote-block">
         <span class="tag">Por qué importa</span>
-        <p>Nuestro equipo técnico diseña, instala y da seguimiento a soluciones de monitoreo ambiental — no solo vendemos sensores, diseñamos garantías de confiabilidad del dato.</p>
+        <p>Nuestro equipo técnico diseña y da seguimiento a soluciones de monitoreo ambiental — no solo vendemos sensores, diseñamos garantías de confiabilidad del dato.</p>
       </div>
     </div>
   </div>
@@ -500,6 +525,7 @@
         <div class="meta-line"><span class="k">Correo</span><span>contacto@sensiaire.com</span></div>
         <div class="meta-line"><span class="k">Sede</span><span>Zapopan, Jalisco</span></div>
         <div class="meta-line"><span class="k">Cobertura</span><span>México y LATAM</span></div>
+        <div class="meta-line"><span class="k">LinkedIn</span><span><a href="https://www.linkedin.com/company/s4iotsensiaire" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">linkedin.com/company/s4iotsensiaire</a></span></div>
       </div>
     </div>
   </div>
@@ -508,9 +534,16 @@
 <footer>
   <div class="wrap">
     <span style="display:flex;align-items:center;gap:10px;"><img src="data:image/png;base64,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" alt="" style="height:16px;display:block;"> SENSIAIRE © 2026 — UNA MARCA DE S4IOT</span>
-    <span>ZAPOPAN, JALISCO, MX</span>
+    <span>ZAPOPAN, JALISCO, MX  ·  <a href="https://www.linkedin.com/company/s4iotsensiaire" target="_blank" rel="noopener" style="color:inherit;">LINKEDIN</a></span>
   </div>
 </footer>
 
+
+<a href="https://wa.me/523338086146" target="_blank" rel="noopener" class="wa-float" aria-label="Contáctanos por WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+<div class="wa-tooltip">Escríbenos por WhatsApp</div>
 </body>
 </html>
