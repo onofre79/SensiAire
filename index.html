@@ -508,17 +508,46 @@
     </div>
     <div class="form-wrap">
       <div>
-        <div class="reasonrow">
-          <span class="reason sel">Cotizar un equipo</span>
-          <span class="reason">Agendar consultoría</span>
-          <span class="reason">Otro</span>
+        <!-- Estado: formulario -->
+        <div id="form-container">
+          <div class="reasonrow" id="reasonrow">
+            <span class="reason sel" onclick="selectReason(this)">Cotizar un equipo</span>
+            <span class="reason" onclick="selectReason(this)">Agendar consultoría</span>
+            <span class="reason" onclick="selectReason(this)">Otro</span>
+          </div>
+          <form id="contact-form" onsubmit="submitForm(event)">
+            <input type="hidden" name="access_key" value="b8f3c2d1-7e4a-4f9b-a1c5-2d8e6f0b3a7c">
+            <input type="hidden" name="subject" value="Nuevo mensaje desde sensiaire.com">
+            <input type="hidden" name="from_name" value="SensiAire Web">
+            <input type="hidden" name="redirect" value="false">
+            <input type="hidden" name="motivo" id="motivo-hidden" value="Cotizar un equipo">
+            <div class="ffield"><label>Nombre</label><input type="text" name="nombre" id="f-nombre" placeholder="Tu nombre" required></div>
+            <div class="ffield"><label>Empresa</label><input type="text" name="empresa" id="f-empresa" placeholder="Tu empresa"></div>
+            <div class="ffield"><label>Correo</label><input type="email" name="correo" id="f-correo" placeholder="tu@correo.com" required></div>
+            <div class="ffield"><label>Teléfono</label><input type="text" name="telefono" id="f-telefono" placeholder="+52 ..."></div>
+            <div class="ffield"><label>Mensaje</label><textarea name="mensaje" id="f-mensaje" placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
+            <button type="submit" id="submit-btn" class="btn btn-primary" style="background:#7FD79B;color:var(--green-deep);border:none;cursor:pointer;">
+              <span id="btn-text">Enviar mensaje →</span>
+            </button>
+          </form>
         </div>
-        <div class="ffield"><label>Nombre</label><input type="text" placeholder="Tu nombre"></div>
-        <div class="ffield"><label>Empresa</label><input type="text" placeholder="Tu empresa"></div>
-        <div class="ffield"><label>Correo</label><input type="email" placeholder="tu@correo.com"></div>
-        <div class="ffield"><label>Teléfono</label><input type="text" placeholder="+52 ..."></div>
-        <div class="ffield"><label>Mensaje</label><textarea placeholder="Cuéntanos sobre tu proyecto..."></textarea></div>
-        <a href="#" class="btn btn-primary" style="background:#7FD79B;color:var(--green-deep);">Enviar mensaje →</a>
+        <!-- Estado: confirmación -->
+        <div id="form-success" style="display:none;padding:32px 0;">
+          <div style="font-size:36px;margin-bottom:16px;">✅</div>
+          <h3 style="font-family:'Fraunces',serif;font-size:24px;color:#7FD79B;margin:0 0 12px;">¡Mensaje enviado!</h3>
+          <p style="color:#B9CFC6;font-size:15px;line-height:1.7;margin:0 0 24px;">Gracias por contactarnos. Revisaremos tu mensaje y te responderemos a la brevedad por correo.</p>
+          <a id="wa-followup" href="#" target="_blank" rel="noopener"
+             style="display:inline-flex;align-items:center;gap:10px;background:#25D366;color:#fff;padding:13px 22px;border-radius:4px;font-size:14.5px;font-weight:500;text-decoration:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            También puedes escribirnos por WhatsApp
+          </a>
+        </div>
+        <!-- Estado: error -->
+        <div id="form-error" style="display:none;padding:32px 0;">
+          <div style="font-size:36px;margin-bottom:16px;">⚠️</div>
+          <p style="color:#C0552A;font-size:15px;margin:0 0 18px;">Hubo un problema al enviar el mensaje. Por favor intenta de nuevo o escríbenos directamente.</p>
+          <button onclick="resetForm()" class="btn btn-ghost" style="border-color:rgba(255,255,255,0.3);color:#EFEAE0;cursor:pointer;background:none;">Intentar de nuevo</button>
+        </div>
       </div>
       <div class="contact-meta">
         <p>Atendemos proyectos en todo México, con representación de tecnología Ecomesure para la región.</p>
@@ -530,6 +559,59 @@
     </div>
   </div>
 </section>
+
+<script>
+function selectReason(el) {
+  document.querySelectorAll('.reason').forEach(r => r.classList.remove('sel'));
+  el.classList.add('sel');
+  document.getElementById('motivo-hidden').value = el.textContent;
+}
+
+async function submitForm(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  const btnText = document.getElementById('btn-text');
+  btnText.textContent = 'Enviando...';
+  btn.disabled = true;
+
+  const form = document.getElementById('contact-form');
+  const data = new FormData(form);
+
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: data
+    });
+    const json = await res.json();
+
+    if (json.success) {
+      // Build WhatsApp follow-up link with form data
+      const nombre = document.getElementById('f-nombre').value;
+      const empresa = document.getElementById('f-empresa').value;
+      const motivo = document.getElementById('motivo-hidden').value;
+      const msg = encodeURIComponent(`Hola SensiAire, soy ${nombre}${empresa ? ' de ' + empresa : ''}. Les contacté por su sitio web para: ${motivo}. ¿Pueden darme seguimiento?`);
+      document.getElementById('wa-followup').href = `https://wa.me/523338086146?text=${msg}`;
+
+      document.getElementById('form-container').style.display = 'none';
+      document.getElementById('form-error').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } else {
+      throw new Error('Web3Forms error');
+    }
+  } catch(err) {
+    document.getElementById('form-container').style.display = 'none';
+    document.getElementById('form-success').style.display = 'none';
+    document.getElementById('form-error').style.display = 'block';
+    btnText.textContent = 'Enviar mensaje →';
+    btn.disabled = false;
+  }
+}
+
+function resetForm() {
+  document.getElementById('form-error').style.display = 'none';
+  document.getElementById('form-container').style.display = 'block';
+}
+</script>
 
 <footer>
   <div class="wrap">
